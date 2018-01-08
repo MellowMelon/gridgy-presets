@@ -176,7 +176,7 @@ export function square(props) {
     width,
     height,
   } = props;
-  const faceList = map2D(width, height, (x, y) => "f," + x + "," + y + ",0");
+  const faceList = map2D(width, height, (x, y) => [x, y, "0"]);
   return makeGeometry(tessSquare, faceList, props);
 }
 
@@ -186,7 +186,7 @@ export function octagon(props) {
     height,
   } = props;
   const faceList = map2D(width, height, (x, y) => {
-    return "f," + Math.floor(x / 2) + "," + Math.floor(y / 2) + "," + (x % 2 + 2 * (y % 2));
+    return [Math.floor(x / 2), Math.floor(y / 2), String(x % 2 + 2 * (y % 2))];
   });
   return makeGeometry(tessOctagon, faceList, props);
 }
@@ -204,7 +204,7 @@ export function snubSquare(props) {
     const qy = Math.floor(y / 4);
     const fid = (x % 2 ? 1 : 0) + (y % 2 ? 2 : 0) +
       (x % 4 >= 2 ? 3 : 0) + (y % 4 >= 2 ? 6 : 0);
-    return "f," + qx + "," + qy + "," + fid;
+    return [qx, qy, String(fid)];
   });
   return makeGeometry(tessSnubSquare, faceList, props);
 }
@@ -219,7 +219,7 @@ export function cairo(props) {
     const hx = Math.floor(x / 2);
     const hy = Math.floor(y / 2);
     const fid = (x % 2 ? 2 : 0) + (y % 2 ? 4 : 0) + (twiceY % 2 ? 1 : 0);
-    return "f," + hx + "," + hy + "," + fid;
+    return [hx, hy, String(fid)];
   });
   return makeGeometry(tessCairo, faceList, props);
 }
@@ -231,7 +231,7 @@ export function triangleH(props) {
   } = props;
   const faceList = map2D(2 * width, height, (x, y) => {
     x -= y;
-    return "f," + Math.floor(x / 2) + "," + y + "," + Math.abs(x % 2);
+    return [Math.floor(x / 2), y, String(Math.abs(x % 2))];
   });
   return makeGeometry(tessTriangleH, faceList, props);
 }
@@ -242,7 +242,7 @@ export function triangleHDown(props) {
   } = props;
   const faceList = map2D(2 * length, length, (x, y) => {
     if (x + 2 * y >= 2 * length - 1) { return null; }
-    return "f," + Math.floor(x / 2) + "," + y + "," + Math.abs(x % 2);
+    return [Math.floor(x / 2), y, String(Math.abs(x % 2))];
   });
   return makeGeometry(tessTriangleH, faceList, props);
 }
@@ -253,7 +253,7 @@ export function triangleHUp(props) {
   } = props;
   const faceList = map2D(2 * length, length, (x, y) => {
     if (x + 2 * y < 2 * length - 1) { return null; }
-    return "f," + Math.floor(x / 2) + "," + y + "," + Math.abs(x % 2);
+    return [Math.floor(x / 2), y, String(Math.abs(x % 2))];
   });
   return makeGeometry(tessTriangleH, faceList, props);
 }
@@ -265,7 +265,7 @@ export function triangleV(props) {
   } = props;
   const faceList = map2D(width, 2 * height, (x, y) => {
     y -= x;
-    return "f," + x + "," + Math.floor(y / 2) + "," + Math.abs(y % 2);
+    return [x, Math.floor(y / 2), String(Math.abs(y % 2))];
   });
   return makeGeometry(tessTriangleV, faceList, props);
 }
@@ -276,7 +276,7 @@ export function triangleVRight(props) {
   } = props;
   const faceList = map2D(length, 2 * length, (x, y) => {
     if (2 * x + y >= 2 * length - 1) { return null; }
-    return "f," + x + "," + Math.floor(y / 2) + "," + Math.abs(y % 2);
+    return [x, Math.floor(y / 2), String(Math.abs(y % 2))];
   });
   return makeGeometry(tessTriangleV, faceList, props);
 }
@@ -287,7 +287,7 @@ export function triangleVLeft(props) {
   } = props;
   const faceList = map2D(length, 2 * length, (x, y) => {
     if (2 * x + y < 2 * length - 1) { return null; }
-    return "f," + x + "," + Math.floor(y / 2) + "," + Math.abs(y % 2);
+    return [x, Math.floor(y / 2), String(Math.abs(y % 2))];
   });
   return makeGeometry(tessTriangleV, faceList, props);
 }
@@ -299,7 +299,7 @@ export function hexagonH(props) {
   } = props;
   const faceList = map2D(width, height, (x, y) => {
     y -= Math.floor(x / 2);
-    return "f," + x + "," + y + ",0";
+    return [x, y, "0"];
   });
   return makeGeometry(tessHexagonH, faceList, props);
 }
@@ -315,7 +315,7 @@ export function hexagonHCubic(props) {
     y -= x;
     if (x + y < 0 || x + y > height + widthTR - 2) { return null; }
     if (y >= height || y <= -widthTL) { return null; }
-    return "f," + x + "," + y + ",0";
+    return [x, y, "0"];
   });
   return makeGeometry(tessHexagonH, faceList, props);
 }
@@ -327,7 +327,7 @@ export function hexagonV(props) {
   } = props;
   const faceList = map2D(width, height, (x, y) => {
     x -= Math.floor(y / 2);
-    return "f," + x + "," + y + ",0";
+    return [x, y, "0"];
   });
   return makeGeometry(tessHexagonV, faceList, props);
 }
@@ -343,7 +343,7 @@ export function hexagonVCubic(props) {
     x -= y;
     if (x + y < 0 || x + y > width + heightBL - 2) { return null; }
     if (x >= width || x <= -heightTL) { return null; }
-    return "f," + x + "," + y + ",0";
+    return [x, y, "0"];
   });
   return makeGeometry(tessHexagonV, faceList, props);
 }

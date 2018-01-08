@@ -120,7 +120,6 @@ const currentViewState = {
   scale: 100,
   currElType: "f",
   drawLabels: true,
-  tessKeys: false,
   drawOutside: true,
   nearbyHighlightType: null,
   mousedPoint: null,
@@ -130,6 +129,12 @@ function cloneObj(x) {
   const clonedX = {};
   for (const k in x) { clonedX[k] = x[k]; }
   return clonedX;
+}
+
+function getValues(x) {
+  const values = [];
+  for (const k in x) { values.push(x[k]); }
+  return values;
 }
 
 function polygonIntersectsRect(polygon, rect) {
@@ -156,16 +161,16 @@ function findAllElsToDraw(grid) {
     if (!polygonIntersectsRect(grid.getFaceCoordinates(f), [0, 0, 800, 600])) {
       return;
     }
-    faceSet[f] = true;
-    grid.getEdgesOnFace(f).forEach(e => edgeSet[e] = true);
-    grid.getVerticesOnFace(f).forEach(v => vertexSet[v] = true);
+    faceSet[f] = f;
+    grid.getEdgesOnFace(f).forEach(e => edgeSet[e] = e);
+    grid.getVerticesOnFace(f).forEach(v => vertexSet[v] = v);
     grid.getAdjacentFaces(f).forEach(addFace);
   }
   grid.getFaceList().forEach(addFace);
   return {
-    faces: Object.keys(faceSet),
-    edges: Object.keys(edgeSet),
-    vertices: Object.keys(vertexSet),
+    faces: getValues(faceSet),
+    edges: getValues(edgeSet),
+    vertices: getValues(vertexSet),
   };
 }
 
@@ -350,7 +355,7 @@ function draw(viewState) {
         const centerX = coords.reduce((s, p) => s + p[0], 0) / coords.length;
         const centerY = coords.reduce((s, p) => s + p[1], 0) / coords.length;
         ctxLayers.main.fillStyle = grid.hasFace(f) ? "#000" : "#777";
-        const text = viewState.tessKeys ? JSON.stringify(grid.toFaceTessKey(f)) : f;
+        const text = JSON.stringify(f);
         drawLabel(ctxLayers.main, text, centerX, centerY);
       });
     }
@@ -368,7 +373,7 @@ function draw(viewState) {
         if (!viewState.drawOutside && !grid.hasEdge(e)) { return; }
         const coords = grid.getEdgeCoordinates(e);
         ctxLayers.main.fillStyle = grid.hasEdge(e) ? "#000" : "#777";
-        const text = viewState.tessKeys ? JSON.stringify(grid.toEdgeTessKey(e)) : e;
+        const text = JSON.stringify(e);
         drawLabel(ctxLayers.main, text, (coords[0][0] + coords[1][0]) / 2,
           (coords[0][1] + coords[1][1]) / 2);
       });
@@ -387,7 +392,7 @@ function draw(viewState) {
         if (!viewState.drawOutside && !grid.hasVertex(v)) { return; }
         const coords = grid.getVertexCoordinates(v);
         ctxLayers.main.fillStyle = grid.hasVertex(v) ? "#000" : "#777";
-        const text = viewState.tessKeys ? JSON.stringify(grid.toVertexTessKey(v)) : v;
+        const text = JSON.stringify(v);
         drawLabel(ctxLayers.main, text, coords[0] + 8, coords[1] + 13, {align: "left"});
       });
     }
@@ -562,13 +567,6 @@ function initUI() {
     update(currentViewState);
   });
   currentViewState.drawLabels = drawLabelsEl.checked;
-
-  const tessKeysEl = document.getElementById("input-tess-labels");
-  tessKeysEl.addEventListener("change", evt => {
-    currentViewState.tessKeys = evt.currentTarget.checked;
-    update(currentViewState);
-  });
-  currentViewState.tessKeys = tessKeysEl.checked;
 
   const drawOutsideEl = document.getElementById("input-draw-outside");
   drawOutsideEl.addEventListener("change", evt => {
