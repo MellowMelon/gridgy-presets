@@ -1,116 +1,99 @@
 import * as GridgyPresets from "../src/main.js";
 
-const gridDataList = [{
-  exportName: "square",
-  tessExportName: "tessSquare",
-  label: "Square",
-  params: [
-    ["width", "Width", 5],
-    ["height", "Height", 5],
-  ],
-}, {
-  exportName: "octagon",
-  tessExportName: "tessOctagon",
-  label: "Octagon",
-  params: [
-    ["width", "Width", 5],
-    ["height", "Height", 5],
-  ],
-}, {
-  exportName: "snubSquare",
-  tessExportName: "tessSnubSquare",
-  label: "Snub Square",
-  params: [
-    ["width", "Width", 3],
-    ["height", "Height", 3],
-  ],
-}, {
-  exportName: "cairo",
-  tessExportName: "tessCairo",
-  label: "Cairo",
-  params: [
-    ["width", "Width", 3],
-    ["height", "Height", 3],
-  ],
-}, {
-  exportName: "triangleH",
-  tessExportName: "tessTriangleH",
-  label: "Triangle (horizontal side)",
-  params: [
-    ["width", "Width", 5],
-    ["height", "Height", 5],
-  ],
-}, {
-  exportName: "triangleHDown",
-  tessExportName: "tessTriangleH",
-  label: "Triangle (pointing down)",
-  params: [
-    ["length", "Side length", 5],
-  ],
-}, {
-  exportName: "triangleHUp",
-  tessExportName: "tessTriangleH",
-  label: "Triangle (pointing up)",
-  params: [
-    ["length", "Side length", 5],
-  ],
-}, {
-  exportName: "triangleV",
-  tessExportName: "tessTriangleV",
-  label: "Triangle (vertical side)",
-  params: [
-    ["width", "Width", 5],
-    ["height", "Height", 5],
-  ],
-}, {
-  exportName: "triangleVRight",
-  tessExportName: "tessTriangleV",
-  label: "Triangle (pointing right)",
-  params: [
-    ["length", "Side length", 5],
-  ],
-}, {
-  exportName: "triangleVLeft",
-  tessExportName: "tessTriangleV",
-  label: "Triangle (pointing left)",
-  params: [
-    ["length", "Side length", 5],
-  ],
-}, {
-  exportName: "hexagonH",
-  tessExportName: "tessHexagonH",
-  label: "Hexagon (horizontal side)",
-  params: [
-    ["width", "Width", 5],
-    ["height", "Height", 5],
-  ],
-}, {
-  exportName: "hexagonHCubic",
-  tessExportName: "tessHexagonH",
-  label: "Hexagon (horizontal, cubic)",
-  params: [
-    ["widthTL", "Width (top left)", 4],
-    ["widthTR", "Width (top right)", 4],
-    ["height", "Height", 4],
-  ],
-}, {
-  exportName: "hexagonV",
-  tessExportName: "tessHexagonV",
-  label: "Hexagon (vertical side)",
-  params: [
-    ["width", "Width", 5],
-    ["height", "Height", 5],
-  ],
-}, {
-  exportName: "hexagonVCubic",
-  tessExportName: "tessHexagonV",
-  label: "Hexagon (vertical, cubic)",
-  params: [
-    ["width", "Width", 4],
-    ["heightTL", "Height (top left)", 4],
-    ["heightBL", "Height (bottom left)", 4],
-  ],
-}];
+const gridDataList = [
+  {
+    exportName: "square",
+    tessExportName: "tessSquare",
+    label: "Square",
+    params: [["width", "Width", 5], ["height", "Height", 5]],
+  },
+  {
+    exportName: "octagon",
+    tessExportName: "tessOctagon",
+    label: "Octagon",
+    params: [["width", "Width", 5], ["height", "Height", 5]],
+  },
+  {
+    exportName: "snubSquare",
+    tessExportName: "tessSnubSquare",
+    label: "Snub Square",
+    params: [["width", "Width", 3], ["height", "Height", 3]],
+  },
+  {
+    exportName: "cairo",
+    tessExportName: "tessCairo",
+    label: "Cairo",
+    params: [["width", "Width", 3], ["height", "Height", 3]],
+  },
+  {
+    exportName: "triangleH",
+    tessExportName: "tessTriangleH",
+    label: "Triangle (horizontal side)",
+    params: [["width", "Width", 5], ["height", "Height", 5]],
+  },
+  {
+    exportName: "triangleHDown",
+    tessExportName: "tessTriangleH",
+    label: "Triangle (pointing down)",
+    params: [["length", "Side length", 5]],
+  },
+  {
+    exportName: "triangleHUp",
+    tessExportName: "tessTriangleH",
+    label: "Triangle (pointing up)",
+    params: [["length", "Side length", 5]],
+  },
+  {
+    exportName: "triangleV",
+    tessExportName: "tessTriangleV",
+    label: "Triangle (vertical side)",
+    params: [["width", "Width", 5], ["height", "Height", 5]],
+  },
+  {
+    exportName: "triangleVRight",
+    tessExportName: "tessTriangleV",
+    label: "Triangle (pointing right)",
+    params: [["length", "Side length", 5]],
+  },
+  {
+    exportName: "triangleVLeft",
+    tessExportName: "tessTriangleV",
+    label: "Triangle (pointing left)",
+    params: [["length", "Side length", 5]],
+  },
+  {
+    exportName: "hexagonH",
+    tessExportName: "tessHexagonH",
+    label: "Hexagon (horizontal side)",
+    params: [["width", "Width", 5], ["height", "Height", 5]],
+  },
+  {
+    exportName: "hexagonHCubic",
+    tessExportName: "tessHexagonH",
+    label: "Hexagon (horizontal, cubic)",
+    params: [
+      ["widthTL", "Width (top left)", 4],
+      ["widthTR", "Width (top right)", 4],
+      ["height", "Height", 4],
+    ],
+  },
+  {
+    exportName: "hexagonV",
+    tessExportName: "tessHexagonV",
+    label: "Hexagon (vertical side)",
+    params: [["width", "Width", 5], ["height", "Height", 5]],
+  },
+  {
+    exportName: "hexagonVCubic",
+    tessExportName: "tessHexagonV",
+    label: "Hexagon (vertical, cubic)",
+    params: [
+      ["width", "Width", 4],
+      ["heightTL", "Height (top left)", 4],
+      ["heightBL", "Height (bottom left)", 4],
+    ],
+  },
+];
 
 const currentViewState = {
   currGridIndex: 0,
@@ -127,13 +110,17 @@ const currentViewState = {
 
 function cloneObj(x) {
   const clonedX = {};
-  for (const k in x) { clonedX[k] = x[k]; }
+  for (const k in x) {
+    clonedX[k] = x[k];
+  }
   return clonedX;
 }
 
 function getValues(x) {
   const values = [];
-  for (const k in x) { values.push(x[k]); }
+  for (const k in x) {
+    values.push(x[k]);
+  }
   return values;
 }
 
@@ -148,8 +135,12 @@ function polygonIntersectsRect(polygon, rect) {
     maxX = Math.max(p[0], maxX);
     maxY = Math.max(p[1], maxY);
   });
-  return maxX >= rect[0] && minX <= rect[0] + rect[2] &&
-    maxY >= rect[1] && minY <= rect[1] + rect[3];
+  return (
+    maxX >= rect[0] &&
+    minX <= rect[0] + rect[2] &&
+    maxY >= rect[1] &&
+    minY <= rect[1] + rect[3]
+  );
 }
 
 function findAllElsToDraw(grid) {
@@ -157,13 +148,15 @@ function findAllElsToDraw(grid) {
   const edgeSet = {};
   const faceSet = {};
   function addFace(f) {
-    if (faceSet[f]) { return; }
+    if (faceSet[f]) {
+      return;
+    }
     if (!polygonIntersectsRect(grid.getFaceCoordinates(f), [0, 0, 800, 600])) {
       return;
     }
     faceSet[f] = f;
-    grid.getEdgesOnFace(f).forEach(e => edgeSet[e] = e);
-    grid.getVerticesOnFace(f).forEach(v => vertexSet[v] = v);
+    grid.getEdgesOnFace(f).forEach(e => (edgeSet[e] = e));
+    grid.getVerticesOnFace(f).forEach(v => (vertexSet[v] = v));
     grid.getAdjacentFaces(f).forEach(addFace);
   }
   grid.getFaceList().forEach(addFace);
@@ -183,7 +176,9 @@ function drawLabel(ctx, text, x, y, options = {}) {
 
   const {width} = ctx.measureText(text);
   let rectX = x - 2;
-  if (align === "center") { rectX -= width / 2; }
+  if (align === "center") {
+    rectX -= width / 2;
+  }
   ctx.save();
   ctx.fillStyle = "#FFF";
   ctx.beginPath();
@@ -196,7 +191,9 @@ function drawLabel(ctx, text, x, y, options = {}) {
 }
 
 function highlightFace(ctxLayers, grid, face, drawOutside, highlightType) {
-  if (!drawOutside && !grid.hasFace(face)) { return; }
+  if (!drawOutside && !grid.hasFace(face)) {
+    return;
+  }
   const ctx = ctxLayers.face;
   ctx.fillStyle = highlightType === "mouse" ? "#FF7" : "#CFF";
   ctx.beginPath();
@@ -206,7 +203,9 @@ function highlightFace(ctxLayers, grid, face, drawOutside, highlightType) {
 }
 
 function highlightEdge(ctxLayers, grid, edge, drawOutside, highlightType) {
-  if (!drawOutside && !grid.hasEdge(edge)) { return; }
+  if (!drawOutside && !grid.hasEdge(edge)) {
+    return;
+  }
   const ctx = ctxLayers.main;
   ctx.strokeStyle = highlightType === "mouse" ? "#F44" : "#88F";
   ctx.lineWidth = highlightType === "mouse" ? 5 : 4;
@@ -216,7 +215,9 @@ function highlightEdge(ctxLayers, grid, edge, drawOutside, highlightType) {
 }
 
 function highlightVertex(ctxLayers, grid, vertex, drawOutside, highlightType) {
-  if (!drawOutside && !grid.hasVertex(vertex)) { return; }
+  if (!drawOutside && !grid.hasVertex(vertex)) {
+    return;
+  }
   const ctx = ctxLayers.main;
   ctx.fillStyle = highlightType === "mouse" ? "#F44" : "#88F";
   const center = grid.getVertexCoordinates(vertex);
@@ -329,10 +330,23 @@ function draw(viewState) {
     ctxLayers.main.stroke();
   }
 
-  ctxLayers.main.lineWidth = 2.5;
+  ctxLayers.main.lineWidth = 2.2;
   ctxLayers.main.strokeStyle = "#000";
   ctxLayers.main.beginPath();
   grid.getEdgeList().forEach(e => {
+    const coords = grid.getEdgeCoordinates(e);
+    ctxLayers.main.moveTo(...coords[0]);
+    ctxLayers.main.lineTo(...coords[1]);
+  });
+  ctxLayers.main.stroke();
+
+  ctxLayers.main.lineWidth = 3.6;
+  ctxLayers.main.strokeStyle = "#000";
+  ctxLayers.main.beginPath();
+  grid.getEdgeList().forEach(e => {
+    if (!grid.isEdgeOnBorder(e)) {
+      return;
+    }
     const coords = grid.getEdgeCoordinates(e);
     ctxLayers.main.moveTo(...coords[0]);
     ctxLayers.main.lineTo(...coords[1]);
@@ -343,18 +357,35 @@ function draw(viewState) {
     if (viewState.mousedPoint) {
       const mousedFace = grid.findFaceAt(viewState.mousedPoint);
       if (mousedFace && (viewState.drawOutside || grid.hasFace(mousedFace))) {
-        const highlightInfo = getHighlightInfo("f", viewState.nearbyHighlightType);
-        highlightNearby(ctxLayers, grid, mousedFace, highlightInfo, viewState.drawOutside);
-        highlightFace(ctxLayers, grid, mousedFace, viewState.drawOutside, "mouse");
+        const highlightInfo = getHighlightInfo(
+          "f",
+          viewState.nearbyHighlightType
+        );
+        highlightNearby(
+          ctxLayers,
+          grid,
+          mousedFace,
+          highlightInfo,
+          viewState.drawOutside
+        );
+        highlightFace(
+          ctxLayers,
+          grid,
+          mousedFace,
+          viewState.drawOutside,
+          "mouse"
+        );
       }
     }
     if (viewState.drawLabels) {
       els.faces.forEach(f => {
-        if (!viewState.drawOutside && !grid.hasFace(f)) { return; }
+        if (!viewState.drawOutside && !grid.hasFace(f)) {
+          return;
+        }
         const coords = grid.getFaceCoordinates(f);
         const centerX = coords.reduce((s, p) => s + p[0], 0) / coords.length;
         const centerY = coords.reduce((s, p) => s + p[1], 0) / coords.length;
-        ctxLayers.main.fillStyle = grid.hasFace(f) ? "#000" : "#777";
+        ctxLayers.main.fillStyle = grid.hasFace(f) ? "#000" : "#888";
         const text = JSON.stringify(f);
         drawLabel(ctxLayers.main, text, centerX, centerY);
       });
@@ -363,37 +394,80 @@ function draw(viewState) {
     if (viewState.mousedPoint) {
       const mousedEdge = grid.findEdgeAt(viewState.mousedPoint);
       if (mousedEdge && (viewState.drawOutside || grid.hasEdge(mousedEdge))) {
-        const highlightInfo = getHighlightInfo("e", viewState.nearbyHighlightType);
-        highlightNearby(ctxLayers, grid, mousedEdge, highlightInfo, viewState.drawOutside);
-        highlightEdge(ctxLayers, grid, mousedEdge, viewState.drawOutside, "mouse");
+        const highlightInfo = getHighlightInfo(
+          "e",
+          viewState.nearbyHighlightType
+        );
+        highlightNearby(
+          ctxLayers,
+          grid,
+          mousedEdge,
+          highlightInfo,
+          viewState.drawOutside
+        );
+        highlightEdge(
+          ctxLayers,
+          grid,
+          mousedEdge,
+          viewState.drawOutside,
+          "mouse"
+        );
       }
     }
     if (viewState.drawLabels) {
       els.edges.forEach(e => {
-        if (!viewState.drawOutside && !grid.hasEdge(e)) { return; }
+        if (!viewState.drawOutside && !grid.hasEdge(e)) {
+          return;
+        }
         const coords = grid.getEdgeCoordinates(e);
-        ctxLayers.main.fillStyle = grid.hasEdge(e) ? "#000" : "#777";
+        ctxLayers.main.fillStyle = grid.hasEdge(e) ? "#000" : "#888";
         const text = JSON.stringify(e);
-        drawLabel(ctxLayers.main, text, (coords[0][0] + coords[1][0]) / 2,
-          (coords[0][1] + coords[1][1]) / 2);
+        drawLabel(
+          ctxLayers.main,
+          text,
+          (coords[0][0] + coords[1][0]) / 2,
+          (coords[0][1] + coords[1][1]) / 2
+        );
       });
     }
   } else if (viewState.currElType === "v") {
     if (viewState.mousedPoint) {
       const mousedVertex = grid.findVertexAt(viewState.mousedPoint);
-      if (mousedVertex && (viewState.drawOutside || grid.hasVertex(mousedVertex))) {
-        const highlightInfo = getHighlightInfo("v", viewState.nearbyHighlightType);
-        highlightNearby(ctxLayers, grid, mousedVertex, highlightInfo, viewState.drawOutside);
-        highlightVertex(ctxLayers, grid, mousedVertex, viewState.drawOutside, "mouse");
+      if (
+        mousedVertex &&
+        (viewState.drawOutside || grid.hasVertex(mousedVertex))
+      ) {
+        const highlightInfo = getHighlightInfo(
+          "v",
+          viewState.nearbyHighlightType
+        );
+        highlightNearby(
+          ctxLayers,
+          grid,
+          mousedVertex,
+          highlightInfo,
+          viewState.drawOutside
+        );
+        highlightVertex(
+          ctxLayers,
+          grid,
+          mousedVertex,
+          viewState.drawOutside,
+          "mouse"
+        );
       }
     }
     if (viewState.drawLabels) {
       els.vertices.forEach(v => {
-        if (!viewState.drawOutside && !grid.hasVertex(v)) { return; }
+        if (!viewState.drawOutside && !grid.hasVertex(v)) {
+          return;
+        }
         const coords = grid.getVertexCoordinates(v);
-        ctxLayers.main.fillStyle = grid.hasVertex(v) ? "#000" : "#777";
+        ctxLayers.main.fillStyle = grid.hasVertex(v) ? "#000" : "#888";
         const text = JSON.stringify(v);
-        drawLabel(ctxLayers.main, text, coords[0] + 8, coords[1] + 13, {align: "left"});
+        drawLabel(ctxLayers.main, text, coords[0] + 8, coords[1] + 13, {
+          align: "left",
+        });
       });
     }
   }
@@ -408,11 +482,13 @@ function update(viewState) {
   const gridData = gridDataList[viewState.currGridIndex];
 
   if (viewState.nearbyHighlightType) {
-    const highlightInfo = getHighlightInfo(viewState.currElType,
-      viewState.nearbyHighlightType);
-    document.getElementById("highlight-method-name").innerHTML = highlightInfo ?
-      "grid." + highlightInfo[1] :
-      "(no grid method)";
+    const highlightInfo = getHighlightInfo(
+      viewState.currElType,
+      viewState.nearbyHighlightType
+    );
+    document.getElementById("highlight-method-name").innerHTML = highlightInfo
+      ? "grid." + highlightInfo[1]
+      : "(no grid method)";
   }
 
   const propsLines = gridData.params.map(p => {
@@ -478,20 +554,35 @@ function setupGridParamUI(gridData) {
     }
     div && paramsContainer.appendChild(div);
   });
-  const originXDiv = makeNumberInput("input-origin-x", "Origin X",
-    currentViewState.originX, -10000, 10000, value => {
+  const originXDiv = makeNumberInput(
+    "input-origin-x",
+    "Origin X",
+    currentViewState.originX,
+    -10000,
+    10000,
+    value => {
       currentViewState.originX = value;
       update(currentViewState);
     }
   );
-  const originYDiv = makeNumberInput("input-origin-y", "Origin Y",
-    currentViewState.originY, -10000, 10000, value => {
+  const originYDiv = makeNumberInput(
+    "input-origin-y",
+    "Origin Y",
+    currentViewState.originY,
+    -10000,
+    10000,
+    value => {
       currentViewState.originY = value;
       update(currentViewState);
     }
   );
-  const scaleDiv = makeNumberInput("input-scale", "Scale",
-    currentViewState.scale, 1, 10000, value => {
+  const scaleDiv = makeNumberInput(
+    "input-scale",
+    "Scale",
+    currentViewState.scale,
+    1,
+    10000,
+    value => {
       currentViewState.scale = value;
       update(currentViewState);
     }
@@ -505,7 +596,7 @@ function setGridIndex(index) {
   const gridData = gridDataList[index];
   setupGridParamUI(gridData);
   const params = {};
-  gridData.params.forEach(p => params[p[0]] = p[2]);
+  gridData.params.forEach(p => (params[p[0]] = p[2]));
 
   currentViewState.currGridIndex = index;
   currentViewState.gridParameters = params;

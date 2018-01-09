@@ -45,7 +45,7 @@
   "scripts": {
     "build": "rollup -c",
     "build-demo": "rollup -c --environment DEMO",
-    "pretty": "prettier --config .prettierrc \"{src,test}/**/*.js\" --write",
+    "pretty": "prettier --config .prettierrc \"{src,test,demo}/**/*.js\" --write",
     "test": "mocha test/*.js --require babel-register",
     "testw": "mocha test/*.js --require babel-register --watch --reporter min",
     "test-min": "mocha test/*.js --require babel-register --reporter dot",
