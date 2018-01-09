@@ -130,7 +130,7 @@ export const tessCairo = new Tesselation({
 });
 
 export const tessTriangleH = new Tesselation({
-  periodMatrix: [1, 0.5, 0, HRT3],
+  periodMatrix: [1, 0, 0.5, HRT3],
   faceVerticesTable: {
     "0": [[0, 0, "0"], [1, 0, "0"],  [0, 1, "0"]],
     "1": [[1, 0, "0"], [1, 1, "0"], [0, 1, "0"]],
@@ -139,7 +139,7 @@ export const tessTriangleH = new Tesselation({
 });
 
 export const tessTriangleV = new Tesselation({
-  periodMatrix: [HRT3, 0, 0.5, 1],
+  periodMatrix: [HRT3, 0.5, 0, 1],
   faceVerticesTable: {
     "0": [[0, 0, "0"], [1, 0, "0"],  [0, 1, "0"]],
     "1": [[1, 0, "0"], [1, 1, "0"], [0, 1, "0"]],
@@ -148,7 +148,7 @@ export const tessTriangleV = new Tesselation({
 });
 
 export const tessHexagonH = new Tesselation({
-  periodMatrix: [0.75, 0, HRT3 / 2, HRT3],
+  periodMatrix: [0.75, HRT3 / 2, 0, HRT3],
   faceVerticesTable: {
     "0": [[0, 0, "0"], [0, 0, "1"], [1, 0, "0"], [0, 1, "1"], [0, 1, "0"], [-1, 1, "1"]],
   },
@@ -159,7 +159,7 @@ export const tessHexagonH = new Tesselation({
 });
 
 export const tessHexagonV = new Tesselation({
-  periodMatrix: [HRT3, HRT3 / 2, 0, 0.75],
+  periodMatrix: [HRT3, 0, HRT3 / 2, 0.75],
   faceVerticesTable: {
     "0": [[0, 0, "0"], [0, 0, "1"], [0, 1, "0"], [1, 0, "1"], [1, 0, "0"], [1, -1, "1"]],
   },
