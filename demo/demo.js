@@ -1,5 +1,9 @@
 import * as GridgyPresets from "../src/main.js";
 
+// Sync'd with values in HTML
+const CANVAS_WIDTH = 800;
+const CANVAS_HEIGHT = 600;
+
 const gridDataList = [
   {
     exportName: "square",
@@ -151,7 +155,14 @@ function findAllElsToDraw(grid) {
     if (faceSet[f]) {
       return;
     }
-    if (!polygonIntersectsRect(grid.getFaceCoordinates(f), [0, 0, 800, 600])) {
+    if (
+      !polygonIntersectsRect(grid.getFaceCoordinates(f), [
+        0,
+        0,
+        CANVAS_WIDTH,
+        CANVAS_HEIGHT,
+      ])
+    ) {
       return;
     }
     faceSet[f] = f;
@@ -594,15 +605,27 @@ function setupGridParamUI(gridData) {
 
 function setGridIndex(index) {
   const gridData = gridDataList[index];
-  setupGridParamUI(gridData);
   const params = {};
   gridData.params.forEach(p => (params[p[0]] = p[2]));
 
   currentViewState.currGridIndex = index;
   currentViewState.gridParameters = params;
-  currentViewState.originX = 80;
-  currentViewState.originY = 80;
-  currentViewState.scale = 100;
+  currentViewState.originX = 0;
+  currentViewState.originY = 0;
+  currentViewState.scale = 1;
+  const grid = getGrid(currentViewState);
+  const bbox = grid.getBoundingBox();
+  const canvasPadding = 50;
+  const scale = Math.ceil(
+    Math.min(
+      (CANVAS_WIDTH - 2 * canvasPadding) / bbox[2],
+      (CANVAS_HEIGHT - 2 * canvasPadding) / bbox[3]
+    )
+  );
+  currentViewState.scale = scale;
+  currentViewState.originX = Math.round(-bbox[0] * scale + canvasPadding);
+  currentViewState.originY = Math.round(-bbox[1] * scale + canvasPadding);
+  setupGridParamUI(gridData);
 }
 
 function initUI() {
