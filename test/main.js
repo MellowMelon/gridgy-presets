@@ -1,6 +1,7 @@
 import {describe, it} from "mocha";
 import {expect} from "chai";
 
+import {Tesselation} from "gridgy";
 import * as Presets from "../src/main.js";
 
 describe("tesselations", () => {
@@ -263,6 +264,26 @@ describe("grids", () => {
       include: [[0, 0, "0"]],
     });
     expect(grid.hasFace([0, 0, "0"])).to.equal(true);
+  });
+
+  it("should allow overriding the tesselation", () => {
+    const tSkewedSquare = new Tesselation({
+      periodMatrix: [2, 1, 1, 2],
+      faceVerticesTable: {
+        "0": [[0, 0, "0"], [1, 0, "0"], [1, 1, "0"], [0, 1, "0"]],
+      },
+      vertexCoordinatesTable: {"0": [0, 0]},
+    });
+    const grid = Presets.square({
+      tesselation: tSkewedSquare,
+      width: 2,
+      height: 3,
+    });
+    expect(grid.tesselation, "tesselation").to.equal(tSkewedSquare);
+    expect(
+      grid.getVertexCoordinates([1, 2, "0"]),
+      "altered coordinates"
+    ).to.deep.equal([4, 5]);
   });
 
   it("square", () => {

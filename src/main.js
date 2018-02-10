@@ -33,7 +33,7 @@ function modifyFaceList(
 function makeGeometry(tesselation, tessFaceList, props) {
   const faceList = tessFaceList.map(props.fromFaceTessKey || (x => x));
   return new Grid({
-    tesselation,
+    tesselation: props.tesselation || tesselation,
     faceList: modifyFaceList(
       faceList,
       props.elToString,
