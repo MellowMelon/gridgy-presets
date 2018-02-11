@@ -20,7 +20,7 @@ UMD builds made with rollup are available in the dist directory.
 The example on the [gridgy](https://github.com/MellowMelon/gridgy) readme
 shows a simple case of using gridgy-presets. A more complete example is the
 [demo](https://mellowmelon.github.io/gridgy-presets/index.html) and its
-[JS source](https://github.com/MellowMelon/gridgy-presets/demo/demo.js).
+[JS source](https://github.com/MellowMelon/gridgy-presets/blob/master/demo/demo.js).
 
 Here is another example that covers the tesselation override feature:
 ``` js
