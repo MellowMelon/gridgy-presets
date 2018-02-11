@@ -1,6 +1,7 @@
 import * as GridgyPresets from "../src/main.js";
+// In your code, this line would be
+// import * as GridgyPresets from "gridgy-presets";
 
-// Sync'd with values in HTML
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 600;
 
@@ -500,6 +501,8 @@ function update(viewState) {
     document.getElementById("highlight-method-name").innerHTML = highlightInfo
       ? "grid." + highlightInfo[1]
       : "(no grid method)";
+  } else {
+    document.getElementById("highlight-method-name").innerHTML = " ";
   }
 
   const propsLines = gridData.params.map(p => {
@@ -637,6 +640,7 @@ function initUI() {
     optionEl.innerHTML = d.label;
     gridSelectEl.appendChild(optionEl);
   });
+  gridSelectEl.value = currentViewState.currGridIndex;
   gridSelectEl.addEventListener("change", evt => {
     setGridIndex(parseInt(evt.currentTarget.value));
     update(currentViewState);
@@ -646,6 +650,8 @@ function initUI() {
 
   // Canvas mouse
   const canvasEl = document.getElementById("canvas");
+  canvasEl.width = CANVAS_WIDTH;
+  canvasEl.height = CANVAS_HEIGHT;
   canvasEl.addEventListener("mousemove", evt => {
     const clientRect = canvasEl.getBoundingClientRect();
     const newMousedPoint = [
@@ -671,6 +677,9 @@ function initUI() {
       currentViewState.currElType = evt.currentTarget.value;
       update(currentViewState);
     });
+    if (currentViewState.currElType === elTypeEls.item(i).value) {
+      elTypeEls.item(i).checked = true;
+    }
   }
 
   // Other misc things
@@ -690,14 +699,35 @@ function initUI() {
   currentViewState.drawOutside = drawOutsideEl.checked;
 
   const highlightEl = document.getElementById("input-highlight");
+  highlightEl.value = currentViewState.nearbyHighlightType || "";
   highlightEl.addEventListener("change", evt => {
     currentViewState.nearbyHighlightType = evt.currentTarget.value || null;
     update(currentViewState);
   });
-  currentViewState.nearbyHighlightType = highlightEl.value || null;
+}
+
+function processHashURL(hash) {
+  if (hash.slice(0, 3) === "#g:") {
+    const gridName = hash.slice(3).toLowerCase();
+    for (let i = 0; i < gridDataList.length; i += 1) {
+      if (gridName === gridDataList[i].exportName.toLowerCase()) {
+        currentViewState.currGridIndex = i;
+        return;
+      }
+    }
+  } else if (hash.slice(0, 3) === "#h:") {
+    const elType = hash.slice(3, 4).toLowerCase();
+    const nearbyHighlightType = hash.slice(4).toLowerCase();
+    const highlightInfo = getHighlightInfo(elType, nearbyHighlightType);
+    if (highlightInfo) {
+      currentViewState.currElType = elType;
+      currentViewState.nearbyHighlightType = nearbyHighlightType;
+    }
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+  processHashURL(window.location.hash);
   initUI();
   update(currentViewState);
 });
