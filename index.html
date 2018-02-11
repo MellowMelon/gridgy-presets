@@ -1,0 +1,103 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Gridgy Demo</title>
+
+  <style>
+    body {
+      background: #EDA;
+      display: flex;
+      flex-direction: row;
+    }
+
+    #left {
+      display: flex;
+      flex-direction: column;
+
+      width: 200px;
+      margin-right: 4px;
+      border: 1px solid black;
+      padding: 2px;
+
+      background: #FFF6DD;
+      font-size: 11pt;
+      font-family: sans-serif;
+    }
+
+    #left > * {
+      margin: 4px 0;
+    }
+
+    #grid-params {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #highlight-method-name {
+      font-size: 9pt;
+      font-family: Consolas, monospace;
+    }
+
+    #code {
+      width: 194px;
+      height: 150px;
+      max-width: 194px;
+      white-space: pre;
+      font-size: 8pt;
+      font-family: Consolas, monospace;
+    }
+
+    #canvas-container {
+      border: 1px solid #CCC;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="left">
+    <div>Grid <select id="input-grid-select"></select></div>
+    <div id="grid-params"></div>
+    <div>Element type
+      <div>
+        <input type="radio" value="f" name="eltype" id="input-eltype-f" checked>
+        <label for="input-eltype-f">Face</label>
+        <input type="radio" value="e" name="eltype" id="input-eltype-e">
+        <label for="input-eltype-e">Edge</label>
+        <input type="radio" value="v" name="eltype" id="input-eltype-v">
+        <label for="input-eltype-v">Vertex</label>
+      </div>
+    </div>
+    <div id="highlight-container">
+      <label for="input-highlight">Highlight nearby in blue</label>
+      <select id="input-highlight">
+        <option value="">(none)</option>
+        <option value="f">Faces</option>
+        <option value="e">Edges</option>
+        <option value="v">Vertices</option>
+        <option value="adj">Adjacent</option>
+        <option value="touch">Touching</option>
+        <option value="surr">Surrounding</option>
+      </select>
+      <div id="highlight-method-name"></div>
+    </div>
+    <div>
+      <input type="checkbox" id="input-draw-labels" checked>
+      <label for="input-draw-labels">Draw labels</label>
+    </div>
+    <div>
+      <input type="checkbox" id="input-draw-outside" checked>
+      <label for="input-draw-outside">Draw outside</label>
+    </div>
+    <div>
+      gridgy-presets code:
+      <textarea id="code" readonly></textarea>
+    </div>
+  </div>
+  <div id="canvas-container">
+    <canvas id="canvas" ></canvas>
+  </div>
+  <script src="file:///Users/pmebane/dev/gridgy-presets/demo/compiled.js"></script>
+</body>
